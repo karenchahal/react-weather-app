@@ -66,7 +66,7 @@ class App extends Component {
     } = this.state;
 
     return (
-      <div className="main-container">
+      <div className="App">
         <Header />
         {hasGrabbedData ? (
           <>
