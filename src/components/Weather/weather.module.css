@@ -1,0 +1,36 @@
+.button {
+  color: whitesmoke;
+  background-color: rgba(91, 119, 243, 0.829);
+  width: 200px;
+  margin-left: 2%;
+}
+
+.button:hover {
+  background-color: #3e8e41;
+}
+
+.image {
+  height: 70px;
+  width: 100px;
+  margin-left: 47%;
+}
+
+.name {
+  font-size: 20px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.region {
+  font-size: 20px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.temp {
+  font-size: 20px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
+
+.description {
+  font-size: 20px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}

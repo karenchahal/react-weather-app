@@ -1,0 +1,14 @@
+.button {
+  color: whitesmoke;
+  background-color: rgba(91, 119, 243, 0.829);
+  width: 200px; /* margin-left: 2%; */
+}
+
+.button:hover {
+  background-color: #3e8e41;
+}
+
+.input {
+  height: 20px;
+  width: 200px;
+}

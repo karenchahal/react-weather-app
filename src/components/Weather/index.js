@@ -1,16 +1,40 @@
 import React, { Component } from "react";
+import Button from "@material-ui/core/Button";
+import css from "./weather.module.css";
 
 class Weather extends Component {
-
   render() {
-    const { temperature, description, isDay, iconURL, backToHome } = this.props;
+    const {
+      temperature,
+      location,
+      description,
+      iconURL,
+      backToHome
+    } = this.props;
     return (
-      <div className="info-container">
-        <h3> Temperature: {temperature} °C</h3>
-        <h3> Weather Conditions: {description}</h3>
-        <h3> isDay: {isDay}</h3>
-        <img src={iconURL} alt="" />
-        <button onClick={backToHome}>Select New Location</button>
+      <div className={css.container}>
+        <div className={css.name}>
+          <h3>
+            {location.name}, {location.region}
+          </h3>
+        </div>
+        <div className={css.temp}>
+          <h3> Temperature: {temperature}°C</h3>
+        </div>
+        <div className={css.image}>
+          <img src={iconURL} alt="" />
+        </div>
+        <div className={css.description}>
+          <h3> Weather Conditions: {description}</h3>
+        </div>
+        <Button
+          className={css.button}
+          variant="extendedFab"
+          enum="small"
+          onClick={backToHome}
+        >
+          Select New Location
+        </Button>
       </div>
     );
   }

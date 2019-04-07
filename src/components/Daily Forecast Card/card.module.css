@@ -1,0 +1,61 @@
+.cardcontainer {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: 0.5px solid black;
+}
+
+.date {
+  width: 200px;
+  height: 19px;
+  color: rgb(252, 252, 252);
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  margin-bottom: 35px;
+  font-size: 30px;
+}
+.image {
+  padding-top: 25px;
+}
+.description {
+  width: 200px;
+  height: 19px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  line-height: 1.583;
+  margin-bottom: 70px;
+  color: rgb(252, 252, 252);
+}
+.mintemp {
+  width: 200px;
+  height: 19px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  line-height: 1.583;
+  color: rgb(252, 252, 252);
+  padding-bottom: 38px;
+}
+.maxtemp {
+  width: 200px;
+  height: 19px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  line-height: 1.583;
+  padding-bottom: 38px;
+  color: rgb(252, 252, 252);
+}
+.sunrise {
+  width: 200px;
+  height: 19px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  line-height: 1.583;
+  padding-bottom: 38px;
+  color: rgb(252, 252, 252);
+}
+.sunset {
+  width: 200px;
+  height: 19px;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  line-height: 1.583;
+  padding-bottom: 50px;
+  color: rgb(252, 252, 252);
+}

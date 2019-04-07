@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import "./App.css";
-import Header from "../Header";
 import Input from "../Input";
 import Forecast from "../Forecasts";
 import Weather from "../Weather";
@@ -14,17 +13,18 @@ class App extends Component {
     super(props);
     this.state = {
       value: "",
+      location: undefined,
       temperature: undefined,
       description: undefined,
-      isDay: undefined,
       iconURL: undefined,
-      hasGrabbedData: false
+      hasGrabbedData: false,
+      forecasts: []
     };
   }
 
   handleChange = event => {
     const { value } = event.target;
-    console.log(event.target.value);
+    // console.log(event.target.value);
     this.setState(state => ({ value }));
   };
 
@@ -34,21 +34,33 @@ class App extends Component {
     }
   };
 
+  handleClick = () => {
+    if (!this.state.value) {
+      return;
+    }
+  };
+
   getWeather = async () => {
     const { value } = this.state;
-    const response = await fetch(
-      `http://api.apixu.com/v1/forecast.json?key=${API_KEY}&q=${value}&days=5`
-    );
-    const data = await response.json();
-    console.log(data);
-    this.setState(state => ({
-      hasGrabbedData: true,
-      temperature: data.current.temp_c,
-      description: data.current.condition.text,
-      isDay: data.current.is_day,
-      iconURL: data.current.condition.icon
-    }));
-    console.log(this.state.hasGrabbedData);
+    try {
+      const response = await fetch(
+        `http://api.apixu.com/v1/forecast.json?key=${API_KEY}&q=${value}&days=6`
+      );
+      const data = await response.json();
+      console.log(data);
+      this.setState(state => ({
+        hasGrabbedData: true,
+        location: data.location,
+        temperature: data.current.temp_c,
+        description: data.current.condition.text,
+        iconURL: data.current.condition.icon,
+        forecasts: data.forecast.forecastday
+      }));
+      console.log("has the data been grabbed", this.state.hasGrabbedData);
+      console.log("forecasts state", this.state.forecasts);
+    } catch (err) {
+      alert("Error fetching data");
+    }
   };
 
   backToHome = () => {
@@ -58,28 +70,32 @@ class App extends Component {
   render() {
     const {
       value,
+      location,
       temperature,
       description,
-      isDay,
       iconURL,
-      hasGrabbedData
+      hasGrabbedData,
+      forecasts
     } = this.state;
 
     return (
       <div className="App">
-        <Header />
+        <div className="header">
+          <h1>Cloud Watch</h1>
+          <h2>Enter the city name or postcode to get weather conditions</h2>
+        </div>
         {hasGrabbedData ? (
-          <>
+          <div className="weather">
             <Weather
-              isDay={isDay}
+              location={location}
               hasGrabbedData={hasGrabbedData}
               iconURL={iconURL}
               temperature={temperature}
               description={description}
               backToHome={this.backToHome}
             />
-            <Forecast />
-          </>
+            <Forecast forecasts={forecasts} />
+          </div>
         ) : (
           <Input
             getWeather={this.getWeather}
