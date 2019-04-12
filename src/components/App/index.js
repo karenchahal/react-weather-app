@@ -44,7 +44,7 @@ class App extends Component {
     const { value } = this.state;
     try {
       const response = await fetch(
-        `http://api.apixu.com/v1/forecast.json?key=${API_KEY}&q=${value}&days=6`
+        `https://api.apixu.com/v1/forecast.json?key=${API_KEY}&q=${value}&days=6`
       );
       const data = await response.json();
       console.log(data);
