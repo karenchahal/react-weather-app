@@ -7,6 +7,7 @@
     "jss": "^9.8.7",
     "react": "^16.8.5",
     "react-dom": "^16.8.5",
+    "react-ga": "^2.5.7",
     "react-jss": "^8.6.1",
     "react-scripts": "2.1.8"
   },

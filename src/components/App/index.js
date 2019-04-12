@@ -3,8 +3,12 @@ import "./App.css";
 import Input from "../Input";
 import Forecast from "../Forecasts";
 import Weather from "../Weather";
+import ReactGA from "react-ga";
 
-// add in a default
+function initializeReactGA() {
+  ReactGA.initialize("UA-138282755-1");
+  ReactGA.pageview("/homepage");
+}
 
 const API_KEY = "9168a10593c24a24bf7181401190304";
 
