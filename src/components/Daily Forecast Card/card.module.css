@@ -1,6 +1,5 @@
 .cardcontainer {
-  width: 80%;
-  height: 100%;
+  width: 35%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -11,14 +10,16 @@
 .date {
   width: 100%;
   height: 10%;
-  color: rgb(252, 252, 252);
+  color: black;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-  font-size: 30px;
+  font-size: 20px;
 }
-
+.image {
+  height: 10%;
+}
 .description {
   width: 100%;
-  height: 10%;
+  height: 15%;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   line-height: 1;
   color: rgb(252, 252, 252);
@@ -48,9 +49,28 @@
 }
 .sunset {
   width: 100%;
-  height: 10%;
+  /* height: 10%; */
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   line-height: 1;
   margin: 1%;
   color: rgb(252, 252, 252);
+}
+
+@media only screen and (min-width: 700px) {
+  .date {
+    color: rgb(252, 252, 252);
+  }
+}
+@media only screen and (min-width: 1200px) {
+  .cardcontainer {
+    width: 80%;
+  }
+
+  .date {
+    font-size: 30px;
+  }
+  .sunset {
+    width: 100%;
+    height: 10%;
+  }
 }
