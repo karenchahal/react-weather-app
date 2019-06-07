@@ -4,6 +4,7 @@ import Input from "../Input";
 import Forecast from "../Forecasts";
 import Weather from "../Weather";
 import ReactGA from "react-ga";
+import { Redirect } from 'react-router-dom';
 
 function initializeReactGA() {
   ReactGA.initialize("UA-138282755-1");
@@ -11,6 +12,16 @@ function initializeReactGA() {
 }
 
 const API_KEY = "9168a10593c24a24bf7181401190304";
+
+const initialState = {
+  value: "",
+  location: undefined,
+  temperature: undefined,
+  description: undefined,
+  iconURL: undefined,
+  hasGrabbedData: false,
+  forecasts: []
+};
 
 class App extends Component {
   constructor(props) {
@@ -44,6 +55,10 @@ class App extends Component {
     }
   };
 
+  backToHome = () => {
+    this.setState(() => (initialState));
+  };
+
   getWeather = async () => {
     const { value } = this.state;
     try {
@@ -63,12 +78,12 @@ class App extends Component {
       console.log("has the data been grabbed", this.state.hasGrabbedData);
       console.log("forecasts state", this.state.forecasts);
     } catch (err) {
-      alert("Error fetching data");
-    }
-  };
+      alert("Whoops looks like you mistyped something, we couldn't find that address. Redirecting you back to the homepage to try again");
+      // return <Redirect to='localhost:3000' />
 
-  backToHome = () => {
-    this.setState(() => ({ hasGrabbedData: false }));
+      // could also throw an error for better logging then do something else like a redirect
+      // throw new Error(`Cannot resolve weather selection because: [${err.message}]`);
+    }
   };
 
   render() {

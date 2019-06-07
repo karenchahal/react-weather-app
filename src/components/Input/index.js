@@ -1,7 +1,9 @@
 import React from "react";
 import Button from "@material-ui/core/Button";
 import css from "./input.module.css";
-const Input = ({ getWeather, handleChange, handleEnter }) => {
+
+
+const Input = ({ getWeather, handleChange, handleEnter, value}) => {
   return (
     <div>
       <input
@@ -13,6 +15,7 @@ const Input = ({ getWeather, handleChange, handleEnter }) => {
       />
       <br /> <br />
       <Button
+        disabled={value === ''}
         className={css.button}
         variant="extendedFab"
         enum="small"
