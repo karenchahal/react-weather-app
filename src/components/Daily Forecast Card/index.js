@@ -12,9 +12,7 @@ const ForecastCard = ({
 }) => {
   return (
     <div className={css.cardcontainer}>
-      <div className={css.date}>
-        <h3>{date}</h3>
-      </div>
+      <div className={css.date}>{date}</div>
       <div className={css.image}>
         <img src={image} alt="" />
       </div>

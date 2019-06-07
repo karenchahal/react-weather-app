@@ -3,6 +3,7 @@
   background-color: rgba(91, 119, 243, 0.829);
   width: 200px;
   margin-left: 2%;
+  margin-bottom: 1.1%;
 }
 
 .button:hover {
@@ -11,7 +12,7 @@
 
 .image {
   height: 70px;
-  width: 100px;
+  width: 70px;
   margin-left: 47%;
 }
 
