@@ -4,7 +4,6 @@ import Input from "../Input";
 import Forecast from "../Forecasts";
 import Weather from "../Weather";
 import ReactGA from "react-ga";
-import { Redirect } from 'react-router-dom';
 
 function initializeReactGA() {
   ReactGA.initialize("UA-138282755-1");
@@ -39,7 +38,6 @@ class App extends Component {
 
   handleChange = event => {
     const { value } = event.target;
-    // console.log(event.target.value);
     this.setState(state => ({ value }));
   };
 
@@ -56,34 +54,31 @@ class App extends Component {
   };
 
   backToHome = () => {
-    this.setState(() => (initialState));
+    this.setState(() => initialState);
   };
 
-  getWeather = async () => {
+  getWeather = () => {
     const { value } = this.state;
-    try {
-      const response = await fetch(
-        `https://api.apixu.com/v1/forecast.json?key=${API_KEY}&q=${value}&days=6`
-      );
-      const data = await response.json();
-      console.log(data);
-      this.setState(state => ({
-        hasGrabbedData: true,
-        location: data.location,
-        temperature: data.current.temp_c,
-        description: data.current.condition.text,
-        iconURL: data.current.condition.icon,
-        forecasts: data.forecast.forecastday
-      }));
-      console.log("has the data been grabbed", this.state.hasGrabbedData);
-      console.log("forecasts state", this.state.forecasts);
-    } catch (err) {
-      alert("Whoops looks like you mistyped something, we couldn't find that address. Redirecting you back to the homepage to try again");
-      // return <Redirect to='localhost:3000' />
-
-      // could also throw an error for better logging then do something else like a redirect
-      // throw new Error(`Cannot resolve weather selection because: [${err.message}]`);
-    }
+    fetch(
+      `https://api.apixu.com/v1/forecast.json?key=${API_KEY}&q=${value}&days=6`
+    )
+      .then(response => response.json())
+      .then(data =>
+        this.setState({
+          hasGrabbedData: true,
+          location: data.location,
+          temperature: data.current.temp_c,
+          description: data.current.condition.text,
+          iconURL: data.current.condition.icon,
+          forecasts: data.forecast.forecastday
+        })
+      )
+      .catch(err => {
+        alert(
+          "Ooops it seems like you've entered an incorrect destination. Please try again."
+        );
+        console.log(err);
+      });
   };
 
   render() {
@@ -99,10 +94,6 @@ class App extends Component {
 
     return (
       <div className="App">
-        <div className="header">
-          <h1>Cloud Watch</h1>
-          <h2>Enter the city name or postcode to get weather conditions</h2>
-        </div>
         {hasGrabbedData ? (
           <div className="weather">
             <Weather
@@ -116,14 +107,21 @@ class App extends Component {
             <Forecast forecasts={forecasts} />
           </div>
         ) : (
-          <Input
-            getWeather={this.getWeather}
-            handleChange={this.handleChange}
-            handleEnter={this.handleEnter}
-            value={value}
-            temperature={temperature}
-            description={description}
-          />
+          <div>
+            <div className="header">
+              <h1>Cloud Watch</h1>
+              <h2>Enter the city name or postcode to get weather conditions</h2>
+            </div>
+
+            <Input
+              getWeather={this.getWeather}
+              handleChange={this.handleChange}
+              handleEnter={this.handleEnter}
+              value={value}
+              temperature={temperature}
+              description={description}
+            />
+          </div>
         )}
       </div>
     );
