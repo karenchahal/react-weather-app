@@ -6,3 +6,6 @@ Type in a city or postcode to retrieve todays weather and a 5-day forecast.
  - Clone or download the repo
  - npm install to install dependencies
  - npm start to run the app
+
+## Live Demo
+https://cloudwatch.netlify.com/
